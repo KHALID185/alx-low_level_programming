@@ -19,7 +19,7 @@ int main(void)
 			if (cnum1 != cnum2 && cnum1 < cnum2)
 			{
 			putchar(cnum1 + 48);
-			putchar(cnum1 + 48);
+			putchar(cnum2 + 48);
 				if (cnum1 + cnum2 != 17)
 				{
 				putchar(',');
