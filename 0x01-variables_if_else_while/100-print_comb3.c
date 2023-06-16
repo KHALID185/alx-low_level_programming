@@ -6,12 +6,12 @@
  *
  * Return: 0 (success)
 */
+
 int main(void)
 {
 	int cnum1 = 0, cnum2;
 
 	while (cnum1 <= 9)
-
 	{
 		cnum2 = 0;
 		while (cnum2 <= 9)
@@ -20,6 +20,7 @@ int main(void)
 			{
 			putchar(cnum1 + 48);
 			putchar(cnum2 + 48);
+
 				if (cnum1 + cnum2 != 17)
 				{
 				putchar(',');
