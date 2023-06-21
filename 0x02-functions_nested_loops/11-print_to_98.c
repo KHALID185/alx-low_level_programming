@@ -13,7 +13,7 @@ void times_table(void)
 		_putchar(48);
 		for (l = 1; l < 10; l++)
 		{
-		_putchar(',');
+		_putchar((',');
 		_putchar(' ');
 		mtrx = c * l;
 		if (mtrx <= 9)
