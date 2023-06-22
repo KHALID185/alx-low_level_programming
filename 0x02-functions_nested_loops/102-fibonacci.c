@@ -1,4 +1,4 @@
-#includ "main.h"
+#include "main.h"
 
 /**
  * main - Entry pt
@@ -13,11 +13,11 @@ int main(void)
 
 	for (counteur = 0; counteur < 50; counteur++)
 	{
-		s = fcb1 + fcb2;
+		s = fbc1 + fbc2;
 		printf("%lu", s);
 
-		fcb1 = fcb2;
-		fcb2 = s;
+		fbc1 = fbc2;
+		fbc2 = s;
 		if (counteur == 49)
 			printf("\n");
 		else
