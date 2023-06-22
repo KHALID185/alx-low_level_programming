@@ -3,7 +3,7 @@
 /**
  * print_diagonal - print a diagonal
  *
- * @n: number of \
+ * @n: number of 
  *
 */
 
