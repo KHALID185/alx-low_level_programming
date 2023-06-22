@@ -20,11 +20,9 @@ void more_numbers(void)
 				_putchar(1 + 48);
 				n = (j % 10);
 			}
-		_putchar(n + 48);
+			_putchar(n + 48);
 		}
 
-		_putchar(i);
+		_putchar('\n');
 	}
-	_putchar('\n');
-
 }
