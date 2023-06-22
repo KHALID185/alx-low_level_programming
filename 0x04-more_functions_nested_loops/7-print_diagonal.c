@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * print_diagonal - print a diagonal
+ * print_diagonal - print a diagonal line
  *
- * @n: number of
+ * @n: number of character should be printed
  *
 */
 
@@ -15,7 +15,7 @@ void print_diagonal(int n)
 		_putchar('\n');
 	else
 	{
-		for (i = 1; i <=  n; i++)
+		for (i = 1; i <= n; i++)
 		{
 			for (sp = 1; sp <= i; sp++)
 				_putchar(32);
