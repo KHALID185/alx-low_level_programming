@@ -1,22 +1,26 @@
 #include "main.h"
 
 /**
- * print_line - print straight line
+ * print_diagonal - print straight line
  *
- * @n: number of tirer 8
+ * @n: number of \
  *
 */
 
-void print_line(int n)
+void print_diagonal(int n)
 {
-	int i;
+	int i, space;
 
 	if (n <= 0)
 		_putchar('\n');
 	else
 	{
-		for (i = 1; i <=  n; i++)
-			_putchar('_');
-		_putchar('\n');
+		for (i = O; i <  n; i++)
+		{
+			for (space = 0; space < i; space++)
+				_putchar(' ');
+			_putchar(92);
+			_putchar('\n');
+		}
 	}
 }
