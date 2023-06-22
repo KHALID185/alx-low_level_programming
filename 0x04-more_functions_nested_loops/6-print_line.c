@@ -3,13 +3,13 @@
 /**
  * print_line - print straight line
  *
- * @n: number of _
+ * @n: number of tirer 8
  *
 */
 
 void print_line(int n)
 {
-	char i;
+	int i;
 
 	if (n > 0)
 		_putchar('\n');
