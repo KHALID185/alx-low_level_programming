@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * print_line - print numbers ____
+ * print_line - print straight line
  *
- * Return: 0 success
+ * @n: number of _
+ *
 */
 
 void print_line(int n)
