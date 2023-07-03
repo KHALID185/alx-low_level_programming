@@ -8,15 +8,15 @@
 
 void print_diagsums(int *a, int size)
 {
-int i, p1 = 0, p2 = 0;
+	int i, p1 = 0, p2 = 0;
 
-for (i = 0; i < size; i++)
-{
-	p1 += a[i];
-	p2 += a[size - i - 1];
-	a += size;
+	for (i = 0; i < size; i++)
+	{
+		p1 += a[i];
+		p2 += a[size - i - 1];
+		a += size;
 
-}
-printf("%d, ", p1);
-printf("%d\n", p2;
+	}
+	printf("%d, ", p1);
+	printf("%d\n", p2;
 }
