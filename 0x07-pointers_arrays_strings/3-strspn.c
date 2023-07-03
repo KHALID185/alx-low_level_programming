@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * strspn -  gets the length of a prefix substring.
+ * _strspn -  gets the length of a prefix substring.
  * @s: string
  * @accept: onther string
  * Return: number of bytes in the initial segment
@@ -16,7 +16,7 @@ for (i = 0; s[i] != '\0'; i++)
 	for (j = 0; accept[j] != s[i]; j++)
 	{
 		if (accept[j] == '\0')
-			return(i);
+			return (i);
 	}
 }
 return (i);
