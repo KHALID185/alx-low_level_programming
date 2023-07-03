@@ -18,5 +18,5 @@ for (i = 0; i < size; i++)
 
 }
 printf("%d, ", p1);
-printf("%d\n", p1);
+printf("%d\n", p2;
 }
