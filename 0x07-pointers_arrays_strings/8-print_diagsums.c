@@ -18,5 +18,5 @@ void print_diagsums(int *a, int size)
 
 	}
 	printf("%d, ", p1);
-	printf("%d\n", p2;
+	printf("%d\n", p2);
 }
