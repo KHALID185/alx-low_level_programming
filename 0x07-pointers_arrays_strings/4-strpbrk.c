@@ -14,18 +14,19 @@ int i, j;
 char *res;
 
 i = 0;
-while (s[i] != '\0')
-{
-	j = 0;
-	while (accept[j] != '\0')
+	while (s[i] != '\0')
 	{
-		if (accept[j] == s[i])
+		j = 0;
+		while (accept[j] != '\0')
 		{
-		p = &s[i];
-		return (p);
+			if (accept[j] == s[i])
+			{
+			res = &s[i];
+			return (res);
+			}
+			j++;
 		}
-		j++;
+		i++;
 	}
-	i++;
-}
+	return (0);
 }
