@@ -31,7 +31,7 @@ int palind_com(char *a, int l)
 }
 /**
  * is_palindrome - checks if a string is a palindrome
- * @s: string 
+ * @s: string
  *
  * Return: 1 or 0
  */
@@ -39,6 +39,6 @@ int is_palindrome(char *s)
 {
 	int l;
 
-	l = palind2(s, 0);
-	return (palind3(s, l));
+	l = palindrome(s, 0);
+	return (palind_com(s, l));
 }
