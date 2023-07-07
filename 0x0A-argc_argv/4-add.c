@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 /**
  * main - a program that adds  numbers
@@ -15,14 +17,14 @@ int main(int argc, char *argv[])
 
 	while (--argc)
 	{
-			for (s = argv[argc]; *s; s++)
+		for (s = argv[argc]; *s; s++)
+		{
+			if (*s < '0' || *s > '9')
 			{
-				if (*s < '0' || *s > '9')
-				{
-					return (printf("Error\n"), 1);
-				}
+				return (printf("Error\n"), 1);
 			}
-			add += atoi(argv[argc]);
+		}
+		add += atoi(argv[argc]);
 	}
 	printf("%d\n", add);
 	return (0);
