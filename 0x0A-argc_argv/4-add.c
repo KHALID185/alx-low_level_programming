@@ -10,16 +10,20 @@
 
 int main(int argc, char *argv[])
 {
-int add;
-char *s;
+	int add;
+	char *s;
 
-while (--argc)
-{
-	for (s = argv[argc]; *s; s++)
-		if (*s < '0' || *s > '9')
-			return (printf("Error\n"), 1);
-	add += atoi(argv[argc]);
-}
-printf("%d\n", add);
-return (0);
+	while (--argc)
+	{
+			for (s = argv[argc]; *s; s++)
+			{
+				if (*s < '0' || *s > '9')
+				{
+					return (printf("Error\n"), 1);
+				}
+			}
+			add += atoi(argv[argc]);
+	}
+	printf("%d\n", add);
+	return (0);
 }
