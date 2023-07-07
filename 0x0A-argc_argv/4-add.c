@@ -12,20 +12,32 @@
 
 int main(int argc, char *argv[])
 {
-	int add;
-	char *s;
+	int i, j, l, add;
+	char *p;
 
-	while (--argc)
+	if (argc < 2)
+		printf("0\n");
+	else
 	{
-		for (s = argv[argc]; *s; s++)
+		add = 0;
+		for (i = 1; i < argc; i++)
 		{
-			if (*s < '0' || *s > '9')
+			p = argv[i];
+			l = strlen(p);
+
+			for (j = 0; j < l; j++)
 			{
-				return (printf("Error\n"), 1);
+				if (isdigit(*(p + j)) == 0)
+				{
+					printf("Error\n");
+					return (1);
+				}
 			}
+
+			add += atoi(argv[i]);
 		}
-		add += atoi(argv[argc]);
-	}
+
 	printf("%d\n", add);
+	}
 	return (0);
 }
