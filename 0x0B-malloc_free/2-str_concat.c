@@ -2,14 +2,14 @@
 
 /**
  * leng_str - legth of string
- * @s: string
- * return: an integer
+ * @str: string
+ * Return: an integer
 */
 int leng_str(char *str)
 {
 	int l;
 
-	for(l = 0; str[l] != '\0'; l++)
+	for (l = 0; str[l] != '\0'; l++)
 	;
 	return (l);
 }
@@ -32,12 +32,12 @@ if (s2 == NULL)
 
 sz1 = leng_str(s1);
 sz2 = leng_str(s2);
-ptr = malloc((sz1 + sz2) * sizeof(*s1) + 1);
+ptr = malloc((sz1 + sz2) *sizeof(*s1) + 1);
 if (ptr == 0)
 	return (0);
 for (i = 0; i <= sz1 + sz2; i++)
 {
-	if (i <sz1)
+	if (i < sz1)
 		ptr[i] = s1[i];
 	else
 		ptr[i] = s2[i - sz1];
