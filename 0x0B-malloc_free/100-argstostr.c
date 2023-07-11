@@ -22,24 +22,26 @@ return (l);
 
 char *argstostr(int ac, char **av)
 {
-int i, j, l2, ligne;
-char *s;
+	int i, j, l2, ligne;
+	char *s;
 
-if (ac == 0 || av == NULL)
-	return (NULL);
-for (i = 0; i < ac; i++, l2++)
-	l2 = leng_str(av[i]);
+	if (ac == 0 || av == NULL)
+		return (NULL);
 
-s = malloc(sizeof(char) * l2 + 1);
-if (s == 0)
-	return (NULL);
-for (i = 0; i < ac; i++)
-{
-	for (j = 0; av[i][j] != '\0'; j++, ligne++)
-		s[ligne] = av[i][j];
-	s[ligne] = '\n';
-	ligne++;
-}
-s[ligne] = '\0';
-return (s);
+	for (i = 0; i < ac; i++, l2++)
+		l2 = leng_str(av[i]);
+
+	s = malloc(sizeof(char) * l2 + 1);
+	if (s == 0)
+		return (NULL);
+
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j] != '\0'; j++, ligne++)
+			s[ligne] = av[i][j];
+		s[ligne] = '\n';
+		ligne++;
+	}
+	s[ligne] = '\0';
+	return (s);
 }
