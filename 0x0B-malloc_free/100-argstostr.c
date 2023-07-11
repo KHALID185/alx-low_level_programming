@@ -38,10 +38,10 @@ char *argstostr(int ac, char **av)
 	for (i = 0; i < ac; i++)
 	{
 		for (j = 0; av[i][j] != '\0'; j++, ligne++)
-			s[ligne] = av[i][j];
-		s[ligne] = '\n';
+			ptr[ligne] = av[i][j];
+		ptr[ligne] = '\n';
 		ligne++;
 	}
-	s[ligne] = '\0';
+	ptr[ligne] = '\0';
 	return (ptr);
 }
