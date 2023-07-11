@@ -22,17 +22,17 @@ return (l);
 
 char *argstostr(int ac, char **av)
 {
-	int i, j, l2 = 0, ligne = 0;
-	char *s;
+	int i = 0, j = 0, str_c = 0, ligne = 0;
+	char *ptr;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
 
-	for (i = 0; i < ac; i++, l2++)
-		l2 = leng_str(av[i]);
+	for (i = 0; i < ac; i++, str_c++)
+		str_c += leng_str(av[i]);
 
-	s = malloc(sizeof(char) * l2 + 1);
-	if (s == 0)
+	ptr = malloc(sizeof(char) * str_c + 1);
+	if (ptr == 0)
 		return (NULL);
 
 	for (i = 0; i < ac; i++)
@@ -43,5 +43,5 @@ char *argstostr(int ac, char **av)
 		ligne++;
 	}
 	s[ligne] = '\0';
-	return (s);
+	return (ptr);
 }
