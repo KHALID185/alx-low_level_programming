@@ -22,7 +22,7 @@ return (l);
 
 char *argstostr(int ac, char **av)
 {
-	int i, j, l2, ligne;
+	int i, j, l2 = 0, ligne = 0;
 	char *s;
 
 	if (ac == 0 || av == NULL)
