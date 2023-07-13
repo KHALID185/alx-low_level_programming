@@ -8,7 +8,7 @@
  * Return: first string and n element of string 2
 */
 
-char *string_nconcat(char *s1, char *s2, unsigned int n);
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 char *ptr;
 unsigned int i, j, l_1, l_2;
