@@ -32,7 +32,7 @@ if (new_size > old_size)
 	arr = malloc(new_size);
 	if (!arr)
 		return (NULL);
-	for (i = 0; i < new_size; i++)
+	for (i = 0; i < new_size && i < old_size; i++)
 		*((char *)arr + i) = *((char *)ptr + i);
 	free(ptr);
 }
