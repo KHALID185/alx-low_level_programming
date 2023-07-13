@@ -9,7 +9,7 @@ void pstr(char *s)
 {
 	int j = 0;
 
-	while (s[j] != '\0')
+	while (s[j])
 	{
 		_putchar(s[j]);
 		j++;
@@ -30,13 +30,16 @@ int stoi(const char *str)
 	for (n_1 = 0; !(str[n_1] <= 57 && str[n_1] >= 48); n_1++)
 	{
 		if (str[n_1] == '-')
+		{
 			signe *= -1;
+		}
 	}
 	for (i = n_1; str[i] <= 57 && str[i] >= 48; i++)
 	{
 		res *= 10;
-		res += (str[i]);
+		res += (str[i] - 48);
 	}
+
 	return (signe * res);
 }
 
@@ -54,7 +57,7 @@ void p_i(unsigned long int num)
 	for (; div >= 1; num %= div, div /= 10)
 	{
 	res = num / div;
-	_putchar(48 + res);
+	_putchar('0' + res);
 	}
 }
 
