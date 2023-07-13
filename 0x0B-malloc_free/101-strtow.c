@@ -2,7 +2,7 @@
 
 /**
  * cmptw - compteur for words
- * @string: word to count
+ * @st: word to count
  * Return: number of words type integer
 */
 
@@ -70,7 +70,6 @@ while (str[i])
 	}
 	else
 		i++;
-
 }
 return (ptr);
 }
