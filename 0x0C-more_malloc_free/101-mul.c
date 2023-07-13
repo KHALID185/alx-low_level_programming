@@ -62,13 +62,13 @@ void p_i(unsigned long int num)
 }
 
 /**
- * result - resultat of multiplucatio
+ * main - resultat of multiplucatio
  * @argc: int
  * @argv: array
  * Return: 0 success
 */
 
-int result(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
 	(void)argc;
 
