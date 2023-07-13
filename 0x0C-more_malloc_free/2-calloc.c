@@ -32,7 +32,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		return (NULL);
 	arr = malloc(sizeof(int) * nmemb);
 
-	if (arr == 0)
+	if (!arr)
 		return (NULL);
 
 	_nelement(arr, 0, sizeof(int) * nmemb);
