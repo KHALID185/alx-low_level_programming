@@ -44,24 +44,6 @@ int stoi(const char *str)
 }
 
 /**
- * p_i - print numbers
- * @num: nmber
- * Return: empty
-*/
-void p_i(unsigned long int num)
-{
-	unsigned long int div = 1, j, res;
-
-	for (j = 0; num / div > 9; j++, div *= 10)
-	;
-	for (; div >= 1; num %= div, div /= 10)
-	{
-		res = num / div;
-		_putchar('0' + res);
-	}
-}
-
-/**
  * main - resultat of multiplucatio
  * @argc: int
  * @argv: array
@@ -71,6 +53,8 @@ void p_i(unsigned long int num)
 int main(int argc, char const *argv[])
 {
 	int i, j;
+	unsigned long m;
+
 	if (argc != 3)
 	{
 		pstr("Error\n");
@@ -87,8 +71,8 @@ int main(int argc, char const *argv[])
 			}
 		}
 	}
-	p_i(stoi(argv[1]) * stoi(argv[2]));
-	_putchar('\n');
+	m = (stoi(argv[1]) * stoi(argv[2]));
+	printf("%lu\n", m);
 
 	return (0);
 }
