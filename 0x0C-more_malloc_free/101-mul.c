@@ -71,7 +71,6 @@ void p_i(unsigned long int num)
 int main(int argc, char const *argv[])
 {
 	int i, j;
-	unsigned long m;
 	if (argc != 3)
 	{
 		pstr("Error\n");
@@ -88,8 +87,8 @@ int main(int argc, char const *argv[])
 			}
 		}
 	}
-	m = stoi(argv[1]) * stoi(argv[2]);
-	printf("%lu\n", m);
+	p_i(stoi(argv[1]) * stoi(argv[2]));
+	_putchar('\n');
 
 	return (0);
 }
