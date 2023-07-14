@@ -70,15 +70,29 @@ void p_i(unsigned long int num)
 
 int main(int argc, char const *argv[])
 {
+	int i, j;
+	unsigned long m;
+
 	(void)argc;
 
 	if (argc != 3)
 	{
-		pstr("Error ");
+		pstr("Error\n");
 		exit(98);
 	}
-	p_i(stoi(argv[1]) * stoi(argv[2]));
-	_putchar('\n');
+	for (i = 0; i < argc; i++)
+	{
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (argv[i][j] < 48 || argv[i][j] > 58)
+			{
+				printf("Error\n");
+				exit(98);
+			}
+		}
+	}
+	m = p_i(stoi(argv[1]) * stoi(argv[2]));
+	printf("%lu\n", m);
 
 	return (0);
 }
