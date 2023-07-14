@@ -26,6 +26,7 @@ int stoi(const char *str)
 {
 	int signe = -1;
 	unsigned long int res = 0, n_1, i;
+	unsigned long int div = 1, k, res_f;
 
 	for (n_1 = 0; !(str[n_1] <= 57 && str[n_1] >= 48); n_1++)
 	{
@@ -39,8 +40,14 @@ int stoi(const char *str)
 		res *= 10;
 		res += (str[i] - 48);
 	}
+	for (k = 0; res / div > 9; k++, div *= 10)
+	;
+	for (; div >= 1; res %= div, div /= 10)
+	{
+		res_f = res / div;
+	}
 
-	return (signe * res);
+	return (signe * res_f);
 }
 
 /**
