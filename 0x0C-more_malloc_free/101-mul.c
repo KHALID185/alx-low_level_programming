@@ -56,8 +56,8 @@ void p_i(unsigned long int num)
 	;
 	for (; div >= 1; num %= div, div /= 10)
 	{
-	res = num / div;
-	_putchar('0' + res);
+		res = num / div;
+		_putchar('0' + res);
 	}
 }
 
