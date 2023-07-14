@@ -72,9 +72,6 @@ int main(int argc, char const *argv[])
 {
 	int i, j;
 	unsigned long m;
-
-	(void)argc;
-
 	if (argc != 3)
 	{
 		pstr("Error\n");
@@ -91,7 +88,7 @@ int main(int argc, char const *argv[])
 			}
 		}
 	}
-	m = p_i(stoi(argv[1]) * stoi(argv[2]));
+	m = stoi(argv[1]) * stoi(argv[2]);
 	printf("%lu\n", m);
 
 	return (0);
