@@ -2,12 +2,11 @@
 #define DOG_H
 
 /**
- * Description: create a structure of a dog
- *
  * struct dog - structure of dog
- * @name:name of dog typr pointer
- * @age: age of dog type float
+ * @name:name of dog type p
+ * @age: age of dog type f
  * @owner: name of owner type pointer
+ * Description: create a structure of a dog
 */
 
 struct dog
