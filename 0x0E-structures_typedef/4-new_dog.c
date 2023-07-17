@@ -3,21 +3,6 @@
 #include <stdlib.h>
 
 /**
- *lenstr - length of a string
- *@s: a string
- *Return: length
-*/
-int lenstr(const char *s)
-{
-int i;
-
-i = 0;
-while (*s++)
-	i++;
-return (i);
-}
-
-/**
  * new_dog - a function that creates a new dog.
  * @name: new name
  * @age: age of the new dog
@@ -36,16 +21,16 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (n_d == NULL)
 		return (NULL);
 
-	(*n_d).name = malloc(sizeof(char) * (lenstr(name) + 1));
-	if ((*n_d).name == NULL)
+	if (name == NULL)
 	{
 		free(n_d);
+		free(owner);
 		return (NULL);
 	}
-	if ((*n_d).owner == NULL)
+	if (owner == NULL)
 	{
-		free(n_d->name);
 		free(n_d);
+		free(name);
 		return (NULL);
 	}
 	n_d->name = name;
