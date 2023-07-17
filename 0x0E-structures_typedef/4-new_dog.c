@@ -1,37 +1,35 @@
 #include "dog.h"
-#include <stddef.h>
 #include <stdlib.h>
 
 /**
- * new_dog - a function that creates a new dog.
- * @name: new name
- * @age: age of the new dog
- * @owner: owner of the dog
- * Return: structure of the new dog
-*/
-
+ * new_dog - entry point
+ * @name: string from main, name of pet
+ * @age: number from main, age of pet
+ * @owner: string from main, owner of pet
+ * Return: p
+ */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *n_d;
-
-	n_d = malloc(sizeof(dog_t));
-	if (n_d == NULL)
+	dog_t *p;
+	/* reserving memory to struct*/
+	p = malloc(sizeof(dog_t));
+	if (p == NULL)
 		return (NULL);
-
+	/* Cpunting name pointer*/
 	if (name == NULL)
 	{
-		free(n_d);
+		free(p);
 		free(owner);
 		return (NULL);
 	}
 	if (owner == NULL)
 	{
-		free(n_d);
+		free(p);
 		free(name);
 		return (NULL);
 	}
-	n_d->name = name;
-	n_d->age = age;
-	n_d->owner = owner;
-	return (n_d);
+	p->name = name;
+	p->age = age;
+	p->owner = owner;
+	return (p);
 }
