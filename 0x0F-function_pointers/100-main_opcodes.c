@@ -1,5 +1,5 @@
 #include "function_pointers.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * main - Entry function
@@ -8,7 +8,7 @@
  * Return: 0 success
 */
 
-int main(int argc, int **argv)
+int main(int argc, char **argv)
 {
 char *p_f = (char *)main;
 int i;
