@@ -23,5 +23,5 @@ int index = 0;
 			return (index);
 		index++;
 	}
-	return (0);
+	return (-1);
 }
