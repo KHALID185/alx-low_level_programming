@@ -17,11 +17,7 @@ if (separator == NULL)
 {
 	separator = "";
 }
-if (!n)
-{
-	printf("\n");
-	return;
-}
+
 va_start(ptr, n);
 while (j--)
 {
