@@ -13,7 +13,7 @@ unsigned int j = n;
 va_list ptr;
 
 va_start(ptr, n);
-while (--j)
+while (j--)
 {
 	if (va_arg(ptr, char *) == NULL)
 		printf("(nil)");
