@@ -17,7 +17,7 @@ if (separator == NULL)
 {
 	separator = "";
 }
-if (!n || separator == NULL || *separator == 0)
+if (!n)
 {
 	printf("\n");
 	return;
