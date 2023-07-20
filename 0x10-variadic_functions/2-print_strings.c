@@ -19,7 +19,7 @@ while (j--)
 		printf("(nil)");
 	else
 		printf("%s", va_arg(ptr, char *));
-	if (j != 0 && separator != NULL)
+	if (j != 1 && separator != NULL)
 		printf("%s", separator);
 }
 printf("\n");
