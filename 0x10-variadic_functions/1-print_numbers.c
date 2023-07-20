@@ -21,7 +21,6 @@ if (!n)
 va_start(ptr, n);
 while (j--)
 {
-	va_arg(ptr, int);
 	printf("%d%s", va_arg(ptr, int), j ? (separator ? separator : "") : "\n");
 }
 va_end(ptr);
