@@ -9,17 +9,17 @@
 
 void print_strings(const char *separator, const unsigned int n, ...)
 {
-unsigned int j = n;
+unsigned int j = 0;
 va_list ptr;
 
 va_start(ptr, n);
-while (j--)
+for (; j < n; j++)
 {
 	if (va_arg(ptr, char *) == NULL)
 		printf("(nil)");
 	else
 		printf("%s", va_arg(ptr, char *));
-	if (j != 1 && separator != NULL)
+	if (j != (n - 1) && separator != NULL)
 		printf("%s", separator);
 }
 printf("\n");
