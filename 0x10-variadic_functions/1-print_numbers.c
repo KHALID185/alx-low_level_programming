@@ -1,5 +1,5 @@
 #include "variadic_functions.h"
-
+#include <stdlib.h>
 /**
  * print_numbers - a function that prints numbers, followed by a new line.
  * @separator: string to separe
@@ -13,10 +13,10 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 unsigned int j = n;
 va_list ptr;
 
-if (!n)
+if (!n || separator == NULL || *separator == 0)
 {
 	printf("\n");
-	return;
+	exit(1);
 }
 va_start(ptr, n);
 while (j--)
