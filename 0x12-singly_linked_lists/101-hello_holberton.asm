@@ -1,4 +1,4 @@
-branche		.text
+section		.text
 	extern	printf
 	global	main
 main:
@@ -6,6 +6,5 @@ main:
 	mov		eax, 0
 	call	printf
 
-
-branche		.data
+section		.data
 	txt db 'Hello, Holberton', 0xa, 0
