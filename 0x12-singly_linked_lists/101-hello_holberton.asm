@@ -7,5 +7,5 @@ main:
 	call	printf
 
 
-brache		.data
+branche		.data
 	txt db 'Hello, Holberton', 0xa, 0
