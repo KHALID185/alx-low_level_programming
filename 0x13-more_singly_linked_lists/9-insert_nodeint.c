@@ -20,10 +20,9 @@ n_n->next = NULL;
 
 if (!idx)
 {
-n_n->next = *head;
-*head = n_n;
-return (n_n);
-
+	n_n->next = *head;
+	*head = n_n;
+	return (n_n);
 }
 nd = *head;
 while (nd)
