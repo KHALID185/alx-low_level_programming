@@ -4,18 +4,19 @@
  * @head: pointer on the first element
  * Return: list
 */
-   
+
 listint_t *reverse_listint(listint_t **head)
 {
 	listint_t *nd = NULL, *nxt = NULL;
+
 	if (!head || !*head)
 		return (NULL);
-	nd = head;
-	*head = NULL:
-	while (node)
+	nd = *head;
+	*head = NULL;
+	while (nd)
 	{
-		nxt = nd->nxt;
-		nd->nxt = *head;
+		nxt = nd->next;
+		nd->next = *head;
 		*head = nd;
 		nd = nxt;
 	}
