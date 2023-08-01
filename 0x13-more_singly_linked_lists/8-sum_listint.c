@@ -17,3 +17,4 @@ somme += head->n;
 head = head->next;
 }
 return (somme);
+}
