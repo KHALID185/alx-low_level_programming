@@ -11,7 +11,7 @@ void print_binary(unsigned long int n)
 	int b, p;
 
 	b = sizeof(n) * 8;
-	p = 0
+	p = 0;
 	while (b)
 	{
 		if (n & 1L << --b)
