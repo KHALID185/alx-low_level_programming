@@ -14,7 +14,7 @@ if (!b || (*b != '1' && *b != '0'))
 	return (0);
 while (*b)
 {
-	ret = ret * 2 + (*b++);
+	ret = ret * 2 + (*b++ - '0');
 }
 return (ret);
 }
