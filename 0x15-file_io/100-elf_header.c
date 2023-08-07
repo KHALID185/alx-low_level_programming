@@ -17,7 +17,6 @@ void p_t(unsigned int e_type, unsigned char *e_ident);
 void p_ent(unsigned long int e_entry, unsigned char *e_ident);
 void c_elf(int elf);
 
-
 /**
  * ch_elf - Check if a file is an ELF file.
  * @e_ident: a pointer countain elf num
@@ -29,7 +28,7 @@ int i;
 
 for (i = 0; i < 4; i++)
 {
-if (e_ident[i] != 127 && e_ident[i] != 'E' && e_ident[i] != 'L' && e_ident[i] != 'F')
+if (e_ident[i] != 'L' && e_ident[i] != 'F' && e_ident[i] != 'E')
 {
 dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 exit(98);
