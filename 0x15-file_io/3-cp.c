@@ -23,7 +23,7 @@ int main(int ac, char **av)
 	ff = open(av[1], O_RDONLY);
 	if (ff == -1)
 		dprintf(STDERR_FILENO, ERNR, av[1]), exit(98);
-	tf = open(av[2], O_WDONLY | O_CREAT | O_TRUNC, P);
+	tf = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, P);
 	if (tf == -1)
 		dprintf(STDERR_FILENO, ERNW, av[2]), exit(99);
 	while ((byt = read(ff, bff, R_BUFFER_S)) > 0)
