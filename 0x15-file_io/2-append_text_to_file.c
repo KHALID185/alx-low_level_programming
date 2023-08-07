@@ -23,7 +23,7 @@ return (j);
  * Return: integer
 */
 
-int create_file(const char *filename, char *text_content)
+int append_text_to_file(const char *filename, char *text_content)
 {
 	int f;
 	ssize_t byt = 0,  l = len_s(text_content);
