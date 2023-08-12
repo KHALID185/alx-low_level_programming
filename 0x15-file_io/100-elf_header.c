@@ -12,7 +12,7 @@ void p_m(Elf64_Ehdr hdr)
 {
 	int j;
 
-	printf("  Magic:  ");
+	printf(" Magic:	");
 	for (j = 0; j < EI_NIDENT; j++)
 	{
 		printf("%2.2x%s", hdr.e_ident[j], j == EI_NIDENT - 1 ? "\n" : " ");
@@ -27,7 +27,7 @@ void p_m(Elf64_Ehdr hdr)
 
 void p_c(Elf64_Ehdr hdr)
 {
-	printf("  Class:  ");
+	printf(" Class:				");
 	switch (hdr.e_ident[EI_CLASS])
 	{
 		case ELFCLASS64:
@@ -51,7 +51,7 @@ void p_c(Elf64_Ehdr hdr)
 
 void p_d(Elf64_Ehdr hdr)
 {
-printf("	data:	");
+printf(" Data:					");
 switch (hdr.e_ident[EI_DATA])
 {
 	case ELFDATA2MSB:
@@ -75,7 +75,7 @@ printf("\n");
 
 void p_v(Elf64_Ehdr hdr)
 {
-printf("	version:		%d", hdr.e_ident[EI_VERSION]);
+printf(" Version:				%d", hdr.e_ident[EI_VERSION]);
 switch (hdr.e_ident[EI_VERSION])
 {
 	case EV_CURRENT:
@@ -97,7 +97,7 @@ printf("\n");
 
 void p_o(Elf64_Ehdr hdr)
 {
-printf("	OS/ABI:			");
+printf(" OS/ABI:				");
 switch (hdr.e_ident[EI_OSABI])
 {
 	case ELFOSABI_NONE:
@@ -171,7 +171,7 @@ switch (hdr.e_ident[EI_OSABI])
 
 void p_a(Elf64_Ehdr hdr)
 {
-	printf("	ABI Version:		%d\n", hdr.e_ident[EI_ABIVERSION]);
+	printf(" ABI Version:				%d\n", hdr.e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -185,7 +185,7 @@ void p_t(Elf64_Ehdr hdr)
 	char *ptr = (char *)&hdr.e_type;
 	int j = 0;
 
-	printf("	type:		");
+	printf(" Type:					");
 	if (hdr.e_ident[EI_DATA] == ELFDATA2MSB)
 		j = 1;
 	switch (ptr[j])
@@ -224,7 +224,7 @@ void p_e(Elf64_Ehdr hdr)
 	int j = 0, l = 0;
 	unsigned char *ptr = (unsigned char *)&hdr.e_entry;
 
-	printf("	Entry point address:		0x");
+	printf(" Entry point address:			0x");
 	if (hdr.e_ident[EI_DATA] != ELFDATA2MSB)
 	{
 		j = hdr.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
