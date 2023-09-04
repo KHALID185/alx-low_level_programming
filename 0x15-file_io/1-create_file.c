@@ -15,7 +15,7 @@ if (!filename)
 	return (-1);
 if (text_content != NULL)
 {
-	while (*text_content++)
+	while (text_content[l] != '\0')
 		l++;
 
 }
