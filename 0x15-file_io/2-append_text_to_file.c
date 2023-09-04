@@ -24,11 +24,15 @@ int l_str(char *str)
 
 int append_text_to_file(const char *filename, char *text_content)
 {
-int f_d, byt_a, l = l_str(text_content);
+int f_d, byt_a, l = 0;
 
 if (!filename)
 	return (-1);
-
+if (text_content != NULL)
+{
+	while (text_content[l] != '\0')
+		l++;
+}
 f_d = open(filename, O_WRONLY | O_APPEND);
 byt_a = write(f_d, text_content, l);
 
