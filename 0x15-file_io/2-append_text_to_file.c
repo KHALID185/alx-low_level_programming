@@ -29,8 +29,6 @@ int f_d, byt_a, l;
 if (!filename)
 	return (-1);
 l = l_str(text_content);
-if (l == 0)
-	return (-1);
 
 f_d = open(filename, O_WRONLY | O_APPEND);
 byt_a = write(f_d, text_content, l);
