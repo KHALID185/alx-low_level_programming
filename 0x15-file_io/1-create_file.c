@@ -36,5 +36,5 @@ if (l != 0)
 	byt_print = write(f_d, text_content, l);
 close(f_d);
 
-return (byt_print == l ? 1: -1);
+return (byt_print == l ? 1 : -1);
 }
