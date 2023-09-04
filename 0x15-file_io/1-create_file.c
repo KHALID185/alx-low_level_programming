@@ -8,11 +8,11 @@
 
 int l_str(char *strg)
 {
-int j, l;
+int j;
 
-for (j = 0; strg[j] != '\0'; j++)
-	l++;
-return (l);
+for (j = 0; strg[j] != '\0';)
+	j++;
+return (j);
 }
 
 /**
@@ -24,17 +24,19 @@ return (l);
 
 int create_file(const char *filename, char *text_content)
 {
-size_t byt_print = 0, l_s = l_str(text_content);
+int  byt_print = 0, l_s = l_str(text_content);
 int f_d;
 
 if (filename == NULL)
 	return (-1);
-f_d = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
+f_d = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 if (f_d == -1)
 	return (-1);
 if (l_s != 0)
 	byt_print = write(f_d, text_content, l_s);
+if (byt_print == -1)
+	return (-1);
 close(f_d);
 
-return (byt_print == l_s ? 1 : -1);
+return (1);
 }
