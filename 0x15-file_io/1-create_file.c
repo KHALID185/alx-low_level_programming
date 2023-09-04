@@ -24,17 +24,17 @@ return (l);
 
 int create_file(const char *filename, char *text_content)
 {
-ssize_t byt_print = 0, l = l_str(text_content);
+size_t byt_print = 0, l_s = l_str(text_content);
 int f_d;
 
 if (filename == NULL)
 	return (-1);
-f_d = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+f_d = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
 if (f_d == -1)
 	return (-1);
-if (l != 0)
-	byt_print = write(f_d, text_content, l);
+if (l_s != 0)
+	byt_print = write(f_d, text_content, l_s);
 close(f_d);
 
-return (byt_print == l ? 1 : -1);
+return (byt_print == l_s ? 1 : -1);
 }
