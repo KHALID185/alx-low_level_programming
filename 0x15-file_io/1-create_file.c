@@ -13,15 +13,16 @@ int f_d, byt_w, l = 0;
 
 if (!filename)
 	return (-1);
-if (text_content)
+if (text_content != NULL)
 {
-	while (*text_content++)
+	for (l = 0; text_content[l];)
 		l++;
 
 }
 
 f_d = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
 byt_w = write(f_d, text_content, l);
+
 if (f_d == -1 || byt_w == -1)
 	return (-1);
 
