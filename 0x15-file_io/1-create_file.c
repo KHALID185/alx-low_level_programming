@@ -37,7 +37,5 @@ if (l != 0)
 close(f_d);
 if (byt_print == l)
 	return (1);
-else
-	return (-1);
-return (0);
+return (-1);
 }
