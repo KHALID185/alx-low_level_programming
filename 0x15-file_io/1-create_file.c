@@ -10,7 +10,7 @@ int l_str(char *str)
 {
 	int j = 0;
 
-	for (j = 0; str[j] != '\0';)
+	for (j = 0; str[j];)
 		j++;
 	return (j);
 }
