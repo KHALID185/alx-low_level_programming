@@ -1,5 +1,12 @@
 #include "shell.h"
 
+#define ER_E "Error: Not an ELF file\n"
+#define LE "2's complement, little endian\n"
+#define BE "2's complement, big endian\n"
+#define ER_C "Error: Can't close fd %d\n"
+#define ER_R "Error: Can't read file %s\n"
+#define ER_N "Error: Can't read file %s\n"
+
 /**
  * ch_e - a function to check if its a file elf
  * @e_ident: a pointer to ann tab countain the elf num
@@ -87,10 +94,10 @@ void p_d(unsigned char *e_ident)
 		printf("none\n");
 		break;
 	case ELFDATA2LSB:
-		printf("2's complement, little endian\n");
+		printf(LE);
 		break;
 	case ELFDATA2MSB:
-		printf("2's complement, big endian\n");
+		printf(BE);
 		break;
 	default:
 		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
@@ -250,7 +257,7 @@ void c_e(int elf)
 	if (close(elf) == -1)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", elf);
+			ER_C, elf);
 		exit(98);
 	}
 }
@@ -270,14 +277,14 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	o = open(argv[1], O_RDONLY);
 	if (o == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, ER_R, argv[1]);
 		exit(98);
 	}
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
 		c_e(o);
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, ER_R, argv[1]);
 		exit(98);
 	}
 	r = read(o, header, sizeof(Elf64_Ehdr));
@@ -285,7 +292,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	{
 		free(header);
 		c_e(o);
-		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+		dprintf(STDERR_FILENO, ER_N, argv[1]);
 		exit(98);
 	}
 
