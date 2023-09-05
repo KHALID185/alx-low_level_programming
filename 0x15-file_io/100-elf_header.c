@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 void ch_e(unsigned char *e_ident);
 void p_m(unsigned char *e_ident);
 void p_c(unsigned char *e_ident);
@@ -16,6 +17,7 @@ void p_o(unsigned char *e_ident);
 void p_typ(unsigned int e_type, unsigned char *e_ident);
 void p_e(unsigned long int e_entry, unsigned char *e_ident);
 void c_e(int elf);
+
 
 /**
  * ch_e - a function to check if its a file elf
@@ -321,4 +323,3 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	c_e(o);
 	return (0);
 }
-
