@@ -1,5 +1,6 @@
 #include "shell.h"
-
+#include "100-elf_header_1.c"
+#include "100-elf_header_2.c"
 /**
  * ch_e - a function to check if its a file elf
  * @e_ident: a pointer to ann tab countain the elf num
