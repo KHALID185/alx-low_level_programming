@@ -272,10 +272,10 @@ void c_e(int el)
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
-	int o, r;
+	int d_f, lect;
 
-	o = open(argv[1], O_RDONLY);
-	if (o == -1)
+	d_f = open(argv[1], O_RDONLY);
+	if (d_f == -1)
 	{
 		dprintf(STDERR_FILENO, ER_R, argv[1]);
 		exit(98);
@@ -283,15 +283,15 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
-		c_e(o);
+		c_e(d_f);
 		dprintf(STDERR_FILENO, ER_R, argv[1]);
 		exit(98);
 	}
-	r = read(o, header, sizeof(Elf64_Ehdr));
-	if (r == -1)
+	lect = read(d_f, header, sizeof(Elf64_Ehdr));
+	if (lect == -1)
 	{
 		free(header);
-		c_e(o);
+		c_e(d_f);
 		dprintf(STDERR_FILENO, ER_N, argv[1]);
 		exit(98);
 	}
@@ -308,6 +308,6 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	p_e(header->e_entry, header->e_ident);
 
 	free(header);
-	c_e(o);
+	c_e(d_f);
 	return (0);
 }
