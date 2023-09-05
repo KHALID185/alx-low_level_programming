@@ -248,16 +248,16 @@ void p_e(unsigned long int e_entry, unsigned char *e_ident)
 
 /**
  * c_e - close elf
- * @elf: elf descriptor file
+ * @el: elf descriptor file
  *Return: void
  */
 
-void c_e(int elf)
+void c_e(int el)
 {
-	if (close(elf) == -1)
+	if (close(el) == -1)
 	{
 		dprintf(STDERR_FILENO,
-			ER_C, elf);
+			ER_C, el);
 		exit(98);
 	}
 }
