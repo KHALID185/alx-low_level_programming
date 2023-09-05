@@ -1,12 +1,5 @@
 #include "shell.h"
 
-#define ER_E "Error: Not an ELF file\n"
-#define LE "2's complement, little endian\n"
-#define BE "2's complement, big endian\n"
-#define ER_C "Error: Can't close fd %d\n"
-#define ER_R "Error: Can't read file %s\n"
-#define ER_N "Error: Can't read file %s\n"
-
 /**
  * ch_e - a function to check if its a file elf
  * @e_ident: a pointer to ann tab countain the elf num
@@ -248,16 +241,16 @@ void p_e(unsigned long int e_entry, unsigned char *e_ident)
 
 /**
  * c_e - close elf
- * @el: elf descriptor file
+ * @E_L: elf descriptor file
  *Return: void
  */
 
-void c_e(int el)
+void c_e(int E_L)
 {
-	if (close(el) == -1)
+	if (close(E_L) == -1)
 	{
 		dprintf(STDERR_FILENO,
-			ER_C, el);
+			ER_C, E_L);
 		exit(98);
 	}
 }

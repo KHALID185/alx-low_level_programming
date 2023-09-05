@@ -9,6 +9,13 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#define ER_E "Error: Not an ELF file\n"
+#define LE "2's complement, little endian\n"
+#define BE "2's complement, big endian\n"
+#define ER_C "Error: Can't close fd %d\n"
+#define ER_R "Error: Can't read file %s\n"
+#define ER_N "Error: Can't read file %s\n"
+
 void ch_e(unsigned char *e_ident);
 void p_m(unsigned char *e_ident);
 void p_c(unsigned char *e_ident);
