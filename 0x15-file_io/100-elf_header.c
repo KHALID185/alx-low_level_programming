@@ -13,7 +13,7 @@ void p_d(unsigned char *e_ident);
 void p_v(unsigned char *e_ident);
 void p_a(unsigned char *e_ident);
 void p_o(unsigned char *e_ident);
-void p_t(unsigned int e_type, unsigned char *e_ident);
+void p_typ(unsigned int e_type, unsigned char *e_ident);
 void p_e(unsigned long int e_entry, unsigned char *e_ident);
 void c_e(int elf);
 
@@ -22,17 +22,16 @@ void c_e(int elf);
  * @e_ident: a pointer to ann tab countain the elf num
  * Return: void
  */
-
 void ch_e(unsigned char *e_ident)
 {
-	int i_ndx;
+	int index;
 
-	for (i_ndx = 0; i_ndx < 4; i_ndx++)
+	for (index = 0; index < 4; index++)
 	{
-		if (e_ident[i_ndx] != 127 &&
-		    e_ident[i_ndx] != 'E' &&
-		    e_ident[i_ndx] != 'L' &&
-		    e_ident[i_ndx] != 'F')
+		if (e_ident[index] != 127 &&
+		    e_ident[index] != 'E' &&
+		    e_ident[index] != 'L' &&
+		    e_ident[index] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
@@ -48,15 +47,15 @@ void ch_e(unsigned char *e_ident)
 
 void p_m(unsigned char *e_ident)
 {
-	int i_ndx;
+	int index;
 
 	printf("  Magic:   ");
 
-	for (i_ndx = 0; i_ndx < EI_NIDENT; i_ndx++)
+	for (index = 0; index < EI_NIDENT; index++)
 	{
-		printf("%02x", e_ident[i_ndx]);
+		printf("%02x", e_ident[index]);
 
-		if (i_ndx == EI_NIDENT - 1)
+		if (index == EI_NIDENT - 1)
 			printf("\n");
 		else
 			printf(" ");
@@ -189,6 +188,7 @@ void p_o(unsigned char *e_ident)
  * @e_ident: array countain elf hd
  * Return: empty
  */
+
 void p_a(unsigned char *e_ident)
 {
 	printf("  ABI Version:                       %d\n",
@@ -196,13 +196,13 @@ void p_a(unsigned char *e_ident)
 }
 
 /**
- * p_t - prints elf type
+ * p_typ - prints elf type
  * @e_type: type of elf hd
  * @e_ident: pointer to an string
  * Return: empty
  */
 
-void p_t(unsigned int e_type, unsigned char *e_ident)
+void p_typ(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
@@ -237,6 +237,7 @@ void p_t(unsigned int e_type, unsigned char *e_ident)
  * @e_ident: pointer to an array
  * Return: empty
  */
+
 void p_e(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf("  Entry point address:               ");
@@ -260,6 +261,7 @@ void p_e(unsigned long int e_entry, unsigned char *e_ident)
  * @elf: elf descriptor file
  *Return: void
  */
+
 void c_e(int elf)
 {
 	if (close(elf) == -1)
@@ -279,43 +281,43 @@ void c_e(int elf)
 
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-	Elf64_Ehdr *f_hdr;
-	int d_f, r;
+	Elf64_Ehdr *header;
+	int o, r;
 
-	d_f = open(argv[1], O_RDONLY);
-	if (d_f == -1)
+	o = open(argv[1], O_RDONLY);
+	if (o == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	f_hdr = malloc(sizeof(Elf64_Ehdr));
-	if (f_hdr == NULL)
+	header = malloc(sizeof(Elf64_Ehdr));
+	if (header == NULL)
 	{
-		c_e(d_f);
+		c_e(o);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	r = read(d_f, f_hdr, sizeof(Elf64_Ehdr));
+	r = read(o, header, sizeof(Elf64_Ehdr));
 	if (r == -1)
 	{
-		free(f_hdr);
-		c_e(d_f);
+		free(header);
+		c_e(o);
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
 
-	ch_e(f_hdr->e_ident);
-	printf("ELF f_hdr:\n");
-	p_m(f_hdr->e_ident);
-	p_c(f_hdr->e_ident);
-	p_d(f_hdr->e_ident);
-	p_v(f_hdr->e_ident);
-	p_o(f_hdr->e_ident);
-	p_a(f_hdr->e_ident);
-	p_t(f_hdr->e_type, f_hdr->e_ident);
-	p_e(f_hdr->e_entry, f_hdr->e_ident);
+	ch_e(header->e_ident);
+	printf("ELF Header:\n");
+	p_m(header->e_ident);
+	p_c(header->e_ident);
+	p_d(header->e_ident);
+	p_v(header->e_ident);
+	p_o(header->e_ident);
+	p_a(header->e_ident);
+	p_typ(header->e_type, header->e_ident);
+	p_e(header->e_entry, header->e_ident);
 
-	free(f_hdr);
-	c_e(d_f);
+	free(header);
+	c_e(o);
 	return (0);
 }
