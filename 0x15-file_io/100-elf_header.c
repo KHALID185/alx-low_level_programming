@@ -257,7 +257,7 @@ void p_e(unsigned long int e_entry, unsigned char *e_ident)
 
 /**
  * c_e - close elf
- * @el: elf descriptor file
+ * @elf: elf descriptor file
  *Return: void
  */
 void c_e(int elf)
