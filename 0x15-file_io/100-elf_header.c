@@ -260,39 +260,39 @@ void p_e(unsigned long int e_entry, unsigned char *e_ident)
  * @el: elf descriptor file
  *Return: void
  */
-void c_e(int el)
+void c_e(int elf)
 {
-	if (close(el) == -1)
+	if (close(elf) == -1)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", el);
+			"Error: Can't close fd %d\n", elf);
 		exit(98);
 	}
 }
 
 /**
  * main - entry function
- * @a_c: counter of arguments
- * @a_v: vecteur of arguments pointer
+ * @argc: counter of arguments
+ * @argv: vecteur of arguments pointer
  * Return: o success
  */
 
-int main(int __attribute__((__unused__)) a_c, char *a_v[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *f_hdr;
 	int d_f, r;
 
-	d_f = open(a_v[1], O_RDONLY);
+	d_f = open(argv[1], O_RDONLY);
 	if (d_f == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", a_v[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
 	f_hdr = malloc(sizeof(Elf64_Ehdr));
 	if (f_hdr == NULL)
 	{
 		c_e(d_f);
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", a_v[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
 	r = read(d_f, f_hdr, sizeof(Elf64_Ehdr));
@@ -300,7 +300,7 @@ int main(int __attribute__((__unused__)) a_c, char *a_v[])
 	{
 		free(f_hdr);
 		c_e(d_f);
-		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", a_v[1]);
+		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
 
