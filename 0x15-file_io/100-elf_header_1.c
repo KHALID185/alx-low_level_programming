@@ -7,7 +7,7 @@
 */
 void p_v(unsigned char *e_ident)
 {
-printf(" Version: %d", e_ident[EI_VERSION]);
+printf("  Version:                           %d", e_ident[EI_VERSION]);
 
 switch (e_ident[EI_VERSION])
 {
@@ -27,7 +27,7 @@ default:
  */
 void p_o(unsigned char *e_ident)
 {
-printf(" OS/ABI: ");
+printf("  OS/ABI:                            ");
 
 switch (e_ident[EI_OSABI])
 {
@@ -74,7 +74,7 @@ void p_t(unsigned int e_type, unsigned char *e_ident)
 {
 if (e_ident[EI_DATA] == ELFDATA2MSB)
 e_type >>= 8;
-printf(" Type: ");
+printf("  Type:                              ");
 
 switch (e_type)
 {
@@ -105,7 +105,7 @@ default:
  */
 void p_e(unsigned long int e_entry, unsigned char *e_ident)
 {
-printf(" Entry point address: ");
+printf("  Entry point address:               ");
 
 if (e_ident[EI_DATA] == ELFDATA2MSB)
 {
