@@ -21,7 +21,7 @@ void c_e(int elf);
  * ch_e - a function to check if its a file elf
  * @e_ident: a pointer to ann tab countain the elf num
  * Return: void
-*/
+ */
 
 void ch_e(unsigned char *e_ident)
 {
@@ -30,9 +30,9 @@ void ch_e(unsigned char *e_ident)
 	for (i_ndx = 0; i_ndx < 4; i_ndx++)
 	{
 		if (e_ident[i_ndx] != 127 &&
-				e_ident[i_ndx] != 'E' &&
-				e_ident[i_ndx] != 'L' &&
-				e_ident[i_ndx] != 'F')
+		    e_ident[i_ndx] != 'E' &&
+		    e_ident[i_ndx] != 'L' &&
+		    e_ident[i_ndx] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
@@ -44,7 +44,7 @@ void ch_e(unsigned char *e_ident)
  * p_m - Prints the elf magic numbers
  * @e_ident: A pointer
  * Return: void
-*/
+ */
 
 void p_m(unsigned char *e_ident)
 {
@@ -57,9 +57,7 @@ void p_m(unsigned char *e_ident)
 		printf("%02x", e_ident[i_ndx]);
 
 		if (i_ndx == EI_NIDENT - 1)
-		{
 			printf("\n");
-		}
 		else
 			printf(" ");
 	}
@@ -69,7 +67,7 @@ void p_m(unsigned char *e_ident)
  * p_c - prints elf f_hdr classes
  * @e_ident: pointer to an array
  * Return: empty
- */
+*/
 
 void p_c(unsigned char *e_ident)
 {
@@ -77,17 +75,17 @@ void p_c(unsigned char *e_ident)
 
 	switch (e_ident[EI_CLASS])
 	{
-		case ELFCLASSNONE:
-			printf("none\n");
-			break;
-		case ELFCLASS32:
-			printf("ELF32\n");
-			break;
-		case ELFCLASS64:
-			printf("ELF64\n");
-			break;
-		default:
-			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+	case ELFCLASSNONE:
+		printf("none\n");
+		break;
+	case ELFCLASS32:
+		printf("ELF32\n");
+		break;
+	case ELFCLASS64:
+		printf("ELF64\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 
@@ -95,7 +93,7 @@ void p_c(unsigned char *e_ident)
  * p_d - prints the elf data
  * @e_ident: a pointer
  * Return: void
-*/
+ */
 
 void p_d(unsigned char *e_ident)
 {
@@ -103,17 +101,17 @@ void p_d(unsigned char *e_ident)
 
 	switch (e_ident[EI_DATA])
 	{
-		case ELFDATANONE:
-			printf("none\n");
-			break;
-		case ELFDATA2LSB:
-			printf("2's complement, little endian\n");
-			break;
-		case ELFDATA2MSB:
-			printf("2's complement, big endian\n");
-			break;
-		default:
-			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+	case ELFDATANONE:
+		printf("none\n");
+		break;
+	case ELFDATA2LSB:
+		printf("2's complement, little endian\n");
+		break;
+	case ELFDATA2MSB:
+		printf("2's complement, big endian\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 
@@ -121,20 +119,21 @@ void p_d(unsigned char *e_ident)
  * p_v - prints the elf version hd
  * @e_ident: a pointer to an array countain the elf
  * Return: void
- */
+*/
 
 void p_v(unsigned char *e_ident)
 {
 	printf("  Version:                           %d",
-			e_ident[EI_VERSION]);
+	       e_ident[EI_VERSION]);
+
 	switch (e_ident[EI_VERSION])
 	{
-		case EV_CURRENT:
-			printf(" (current)\n");
-			break;
-		default:
-			printf("\n");
-			break;
+	case EV_CURRENT:
+		printf(" (current)\n");
+		break;
+	default:
+		printf("\n");
+		break;
 	}
 }
 
@@ -142,7 +141,7 @@ void p_v(unsigned char *e_ident)
  * p_o - prints elf osabi hd
  * @e_ident: point to an array countain elf
  * Return: empty
-*/
+ */
 
 void p_o(unsigned char *e_ident)
 {
@@ -150,38 +149,38 @@ void p_o(unsigned char *e_ident)
 
 	switch (e_ident[EI_OSABI])
 	{
-		case ELFOSABI_NONE:
-			printf("UNIX - System V\n");
-			break;
-		case ELFOSABI_HPUX:
-			printf("UNIX - HP-UX\n");
-			break;
-		case ELFOSABI_NETBSD:
-			printf("UNIX - NetBSD\n");
-			break;
-		case ELFOSABI_LINUX:
-			printf("UNIX - Linux\n");
-			break;
-		case ELFOSABI_SOLARIS:
-			printf("UNIX - Solaris\n");
-			break;
-		case ELFOSABI_IRIX:
-			printf("UNIX - IRIX\n");
-			break;
-		case ELFOSABI_FREEBSD:
-			printf("UNIX - FreeBSD\n");
-			break;
-		case ELFOSABI_TRU64:
-			printf("UNIX - TRU64\n");
-			break;
-		case ELFOSABI_ARM:
-			printf("ARM\n");
-			break;
-		case ELFOSABI_STANDALONE:
-			printf("Standalone App\n");
-			break;
-		default:
-			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
+	case ELFOSABI_NONE:
+		printf("UNIX - System V\n");
+		break;
+	case ELFOSABI_HPUX:
+		printf("UNIX - HP-UX\n");
+		break;
+	case ELFOSABI_NETBSD:
+		printf("UNIX - NetBSD\n");
+		break;
+	case ELFOSABI_LINUX:
+		printf("UNIX - Linux\n");
+		break;
+	case ELFOSABI_SOLARIS:
+		printf("UNIX - Solaris\n");
+		break;
+	case ELFOSABI_IRIX:
+		printf("UNIX - IRIX\n");
+		break;
+	case ELFOSABI_FREEBSD:
+		printf("UNIX - FreeBSD\n");
+		break;
+	case ELFOSABI_TRU64:
+		printf("UNIX - TRU64\n");
+		break;
+	case ELFOSABI_ARM:
+		printf("ARM\n");
+		break;
+	case ELFOSABI_STANDALONE:
+		printf("Standalone App\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
 }
 
@@ -189,11 +188,11 @@ void p_o(unsigned char *e_ident)
  * p_a - prints the elf hd of abi version
  * @e_ident: array countain elf hd
  * Return: empty
-*/
+ */
 void p_a(unsigned char *e_ident)
 {
 	printf("  ABI Version:                       %d\n",
-			e_ident[EI_ABIVERSION]);
+	       e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -201,7 +200,7 @@ void p_a(unsigned char *e_ident)
  * @e_type: type of elf hd
  * @e_ident: pointer to an string
  * Return: empty
-*/
+ */
 
 void p_t(unsigned int e_type, unsigned char *e_ident)
 {
@@ -212,23 +211,23 @@ void p_t(unsigned int e_type, unsigned char *e_ident)
 
 	switch (e_type)
 	{
-		case ET_NONE:
-			printf("NONE (None)\n");
-			break;
-		case ET_REL:
-			printf("REL (Relocatable file)\n");
-			break;
-		case ET_EXEC:
-			printf("EXEC (Executable file)\n");
-			break;
-		case ET_DYN:
-			printf("DYN (Shared object file)\n");
-			break;
-		case ET_CORE:
-			printf("CORE (Core file)\n");
-			break;
-		default:
-			printf("<unknown: %x>\n", e_type);
+	case ET_NONE:
+		printf("NONE (None)\n");
+		break;
+	case ET_REL:
+		printf("REL (Relocatable file)\n");
+		break;
+	case ET_EXEC:
+		printf("EXEC (Executable file)\n");
+		break;
+	case ET_DYN:
+		printf("DYN (Shared object file)\n");
+		break;
+	case ET_CORE:
+		printf("CORE (Core file)\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", e_type);
 	}
 }
 
@@ -237,7 +236,7 @@ void p_t(unsigned int e_type, unsigned char *e_ident)
  * @e_entry: the adress of this point
  * @e_ident: pointer to an array
  * Return: empty
-*/
+ */
 void p_e(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf("  Entry point address:               ");
@@ -245,30 +244,28 @@ void p_e(unsigned long int e_entry, unsigned char *e_ident)
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
 		e_entry = ((e_entry << 8) & 0xFF00FF00) |
-			((e_entry >> 8) & 0xFF00FF);
+			  ((e_entry >> 8) & 0xFF00FF);
 		e_entry = (e_entry << 16) | (e_entry >> 16);
 	}
 
 	if (e_ident[EI_CLASS] == ELFCLASS32)
-	{
 		printf("%#x\n", (unsigned int)e_entry);
-	}
+
 	else
-	{
 		printf("%#lx\n", e_entry);
-	}
 }
+
 /**
  * c_e - close elf
  * @el: elf descriptor file
- * Return: void
+ *Return: void
  */
-void c_e(int el)
+void c_e(int elf)
 {
-	if (close(el) == -1)
+	if (close(elf) == -1)
 	{
 		dprintf(STDERR_FILENO,
-		"Error: Can't close fd %d\n", el);
+			"Error: Can't close fd %d\n", elf);
 		exit(98);
 	}
 }
@@ -278,7 +275,7 @@ void c_e(int el)
  * @a_c: counter of arguments
  * @a_v: vecteur of arguments pointer
  * Return: o success
-*/
+ */
 
 int main(int __attribute__((__unused__)) a_c, char *a_v[])
 {
@@ -317,6 +314,7 @@ int main(int __attribute__((__unused__)) a_c, char *a_v[])
 	p_a(f_hdr->e_ident);
 	p_t(f_hdr->e_type, f_hdr->e_ident);
 	p_e(f_hdr->e_entry, f_hdr->e_ident);
+
 	free(f_hdr);
 	c_e(d_f);
 	return (0);
