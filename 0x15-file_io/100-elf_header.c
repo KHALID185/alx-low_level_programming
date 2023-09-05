@@ -264,27 +264,27 @@ void c_e(int el)
 
 /**
  * main - entry function
- * @argc: counter of arguments
- * @argv: vecteur of arguments pointer
+ * @a_c: counter of arguments
+ * @a_v: vecteur of arguments pointer
  * Return: o success
  */
 
-int main(int __attribute__((__unused__)) argc, char *argv[])
+int main(int __attribute__((__unused__)) a_c, char *a_v[])
 {
 	Elf64_Ehdr *header;
 	int d_f, lect;
 
-	d_f = open(argv[1], O_RDONLY);
+	d_f = open(a_v[1], O_RDONLY);
 	if (d_f == -1)
 	{
-		dprintf(STDERR_FILENO, ER_R, argv[1]);
+		dprintf(STDERR_FILENO, ER_R, a_v[1]);
 		exit(98);
 	}
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
 		c_e(d_f);
-		dprintf(STDERR_FILENO, ER_R, argv[1]);
+		dprintf(STDERR_FILENO, ER_R, a_v[1]);
 		exit(98);
 	}
 	lect = read(d_f, header, sizeof(Elf64_Ehdr));
@@ -292,7 +292,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	{
 		free(header);
 		c_e(d_f);
-		dprintf(STDERR_FILENO, ER_N, argv[1]);
+		dprintf(STDERR_FILENO, ER_N, a_v[1]);
 		exit(98);
 	}
 
