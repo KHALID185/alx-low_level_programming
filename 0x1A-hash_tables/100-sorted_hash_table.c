@@ -3,9 +3,9 @@
 /**
  * shash_table_create - create a hash table ordred.
  * @size: size of hash table ordred.
- *
  * Return: a pointer to the new_node hash table
- */
+*/
+
 shash_table_t *shash_table_create(unsigned long int size)
 {
 	shash_table_t *h_t;
@@ -33,7 +33,8 @@ shash_table_t *shash_table_create(unsigned long int size)
  * @key: the key
  * @value: value associate with the key
  * Return: integer
- */
+*/
+
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	shash_node_t *new_node, *garage;
@@ -47,7 +48,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	if (vall == NULL)
 		return (0);
 
-	ndx = key_ndx((const unsigned char *)key, ht->size);
+	ndx = key_index((const unsigned char *)key, ht->size);
 	garage = ht->shead;
 	while (garage)
 	{
@@ -109,38 +110,39 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 }
 
 /**
- * shash_table_get - Retrieve the value associated with
- *                   a key in a sorted hash table.
- * @ht: A pointer to the sorted hash table.
- * @key: The key to get the value of.
- *
- * Return: If the key cannot be matched - NULL.
- *         Otherwise - the value associated with key in ht.
- */
+ * shash_table_get - retrieve the value
+ * @ht: hash table
+ * @key: key to entre
+ * Return: the value associate with key
+*/
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
-	shash_node_t *node;
+	shash_node_t *garage;
 	unsigned long int ndx;
 
-	if (!ht || !key || *key == '\0')
+	if (
+		!ht || !key || strlen(key) == 0 ||
+		ht->array == NULL || ht->size == 0
+	)
 		return (NULL);
 
-	ndx = key_ndx((const unsigned char *)key, ht->size);
-	if (ndx >= ht->size)
-		return (NULL);
-
-	node = ht->shead;
-	while (node != NULL && strcmp(node->key, key) != 0)
-		node = node->snext;
-
-	return ((node == NULL) ? NULL : node->value);
+	ndx = key_index((const unsigned char *)key, ht->size);
+	garage = ht->array[ndx];
+	while (garage != NULL)
+	{
+		if (strcmp(garage->key, key) == 0)
+			return (garage->value);
+		garage = garage->next;
+	}
+	return (NULL);
 }
 
 /**
  * shash_table_print - prints the hash tables elements
  * @ht: pointer to the hash table ordred
  * Return: empty
- */
+*/
+
 void shash_table_print(const shash_table_t *ht)
 {
 	shash_node_t *new_hash_node;
@@ -164,7 +166,8 @@ void shash_table_print(const shash_table_t *ht)
  * shash_table_print_rev - print the elements in hash table reversed
  * @ht: pointer to the hash table
  * Return: empty
- */
+*/
+
 void shash_table_print_rev(const shash_table_t *ht)
 {
 	shash_node_t *new_hnode;
@@ -188,7 +191,8 @@ void shash_table_print_rev(const shash_table_t *ht)
  * shash_table_delete - delete a hash table
  * @ht: hash table
  * Return: empty
- */
+*/
+
 void shash_table_delete(shash_table_t *ht)
 {
 	shash_table_t *hd_hn = ht;
