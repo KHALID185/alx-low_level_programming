@@ -28,6 +28,74 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
+ * new_shnode - a new node for the hash table sorted
+ * @ky: the key
+ * @val: data associate with the key
+ * Return: a pointer to the new sh node
+*/
+
+shash_node_t *new_shnode(const char *ky, const char *val)
+{
+	shash_node_t *sh;
+
+	sh = malloc(1 * sizeof(shash_node_t));
+	if (!sh)
+		return (NULL);
+	sh->key = strdup(ky);
+	if (sh->key == NULL)
+	{
+		free(sh);
+		return (NULL);
+	}
+	sh->value = strdup(val);
+	if (sh->value == NULL)
+	{
+		free(sh->key);
+		free(sh);
+		return (NULL);
+	}
+	sh->next = sh->snext = sh->sprev = NULL;
+	return (sh);
+}
+
+/**
+ * addnode - add node to linked list
+ * @sh_table: sorted hash table
+ * @nd: node
+ * Return: empty
+*/
+
+void addnode(shash_table_t *sh_table, shash_node_t *nd)
+{
+	shash_node_t *garage;
+
+	if (sh_table->shead == NULL && sh_table->stail == NULL)
+	{
+		sh_table->shead = sh_table->stail = nd;
+		return;
+	}
+	garage = sh_table->shead;
+	while (garage)
+	{
+		if (strcmp(nd->key, garage->key) < 0)
+		{
+			nd->snext = garage;
+			nd->sprev = garage->sprev;
+			garage->sprev = nd;
+			if (nd->sprev)
+				nd->sprev->snext = nd;
+			else
+				sh_table->shead = nd;
+			return;
+		}
+		garage = garage->snext;
+	}
+	nd->sprev = sh_table->stail;
+	sh_table->stail->snext = nd;
+	sh_table->stail = nd;
+}
+
+/**
  * shash_table_set - set a new_node key-value in hash table
  * @ht: pointer to hash table
  * @key: the key
@@ -41,71 +109,34 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	char *vall;
 	unsigned long int ndx;
 
-	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
-		return (0);
-
-	vall = strdup(value);
-	if (vall == NULL)
+	if (
+		!ht || !key || ht->size == 0 || !value ||
+		ht->array == NULL || strlen(key) == 0
+	)
 		return (0);
 
 	ndx = key_index((const unsigned char *)key, ht->size);
-	garage = ht->shead;
+	garage = ht->array[ndx];
 	while (garage)
 	{
 		if (strcmp(garage->key, key) == 0)
 		{
+			vall = strdup(value);
+			if (!vall)
+				return (0);
 			free(garage->value);
 			garage->value = vall;
 			return (1);
 		}
-		garage = garage->snext;
+		garage = garage->next;
 	}
 
-	new_node = malloc(sizeof(shash_node_t));
+	new_node = new_shnode(key, value);
 	if (new_node == NULL)
-	{
-		free(vall);
 		return (0);
-	}
-	new_node->key = strdup(key);
-	if (new_node->key == NULL)
-	{
-		free(vall);
-		free(new_node);
-		return (0);
-	}
-	new_node->value = vall;
 	new_node->next = ht->array[ndx];
 	ht->array[ndx] = new_node;
-
-	if (ht->shead == NULL)
-	{
-		new_node->sprev = NULL;
-		new_node->snext = NULL;
-		ht->shead = new_node;
-		ht->stail = new_node;
-	}
-	else if (strcmp(ht->shead->key, key) > 0)
-	{
-		new_node->sprev = NULL;
-		new_node->snext = ht->shead;
-		ht->shead->sprev = new_node;
-		ht->shead = new_node;
-	}
-	else
-	{
-		garage = ht->shead;
-		while (garage->snext != NULL && strcmp(garage->snext->key, key) < 0)
-			garage = garage->snext;
-		new_node->sprev = garage;
-		new_node->snext = garage->snext;
-		if (garage->snext == NULL)
-			ht->stail = new_node;
-		else
-			garage->snext->sprev = new_node;
-		garage->snext = new_node;
-	}
-
+	addnode(ht, new_node);
 	return (1);
 }
 
