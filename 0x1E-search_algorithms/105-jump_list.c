@@ -11,7 +11,7 @@
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t index, a, m;
+	size_t index, a, z;
 	listint_t *prev;
 
 	if (list == NULL || size == 0)
